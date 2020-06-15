@@ -8,7 +8,7 @@ use App\User;
 
 class LoginController extends Controller
 {
-    public function showLogingPage(Request $requset){
-
+    public function showLogingPage(){
+        return view('login');
     }
 }
