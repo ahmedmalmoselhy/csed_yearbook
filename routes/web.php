@@ -30,8 +30,18 @@ Route::get('/login', function(){
 Route::post('/login', 'LoginController@login');
 
 // home page
-Route::get('/home', function(){
-    return view('home');
-});
-
+Route::get('/home', 'HomeController@showHome');
 // publish a public message
+Route::post('/home', 'MessageController@sendPublicMessage');
+// show profile
+Route::get('/profile', 'ProfileController@showProfile');
+// send private message
+Route::post('/profile', 'MessageController@sendPrivateMessage');
+// see sent messages
+Route::get('/sent', 'MessageController@showSentMessages');
+// see received messages
+Route::get('/received', 'MessageController@showMyMessages');
+// make message visible
+Route::post('/received', 'MessageController@publishMessage');
+// delete sent message
+Route::get('/sent', 'MessageController@deleteMessage');
