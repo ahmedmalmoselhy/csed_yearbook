@@ -9,5 +9,5 @@ use App\Message;
 
 class HomeController extends Controller
 {
-    //
+
 }
