@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/signup', function(){
     return view('signup');
 });
-Route::post('/signup', 'SignupController@login');
+Route::post('/signup', 'SignupController@signup');
 
 // login page
 Route::get('/login', function(){
