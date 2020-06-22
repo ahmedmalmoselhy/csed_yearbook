@@ -10,6 +10,7 @@ use App\Message;
 class HomeController extends Controller
 {
     public function showHome(){
+        // get all messages
         $messages_response = [];
         $messages = Message::where('is_public', 1)->get();
         if($messages -> isNotEmpty()){
@@ -27,12 +28,26 @@ class HomeController extends Controller
                 $message_response = [
                     'from' => $sender_name,
                     'message' => $text,
-                    'time' => $timestamp
+                    'time' => $timestamp,
+                    'is_known' => $message -> is_known
                 ];
                 $messages_response[] = $message_response;
             }
         }
+        // get all members
+        $members = User::all()->sortBy('full_name');
+        $members_response = [];
+        foreach($members as $member){
+            $mem = [
+                'id' => $member -> id,
+                'full_name' => $member -> full_name
+            ];
+            $members_response[] = $mem;
+        }
 
-        return view('home')->with('messages_response', $messages_response);
+        return view('home')->with([
+                'messages_response' => $messages_response,
+                'users' => $members_response
+            ]);
     }
 }

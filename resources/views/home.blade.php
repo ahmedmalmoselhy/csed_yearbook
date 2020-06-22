@@ -35,11 +35,11 @@
         <button type="submit">Post</button>
       </footer>
     </form>
-    @forelse ($messages as $message)
+    @forelse ($messages_response as $message)
       <section class="message">
         @if ($message["is_known"])
           <div class="sender">
-            <p>{{$message["from"]}}</p>
+            <p>{{ $message["from"] }}</p>
           </div>
         @else
           <div class="sender anonymus">
@@ -48,10 +48,10 @@
         @endif
         <div class="content">
           <!-- Check english or arabic -->
-          <p class="rtl clamp">{{$message["message"]}}</p>
+          <p class="rtl clamp">{{ $message["message"] }}</p>
           <button class="hidden">See more</button>
           <footer>
-            <p>{{$message["time"]}}</p>
+            <p>{{ $message["time"] }}</p>
             <!-- <p>15/3/2020 at 11:30:20 PM</p> -->
           </footer>
         </div>
@@ -72,15 +72,15 @@
         $char = ""
       @endphp
       @foreach ($users as $user)
-        @if ($user[0] == $char) 
+        @if ($user['full_name'][0] == $char)
           <span></span>
         @else
-          <span class="char">{{$user[0]}}</span>
+          <span class="char">{{$user['full_name'][0]}}</span>
           @php
-            $char = $user[0];
+            $char = $user['full_name'][0];
           @endphp
         @endif
-        <p><a href="/profile" class="name">{{$user}}</a></p>
+        <p><a href="/profile?id={{ $user['id'] }}" class="name">{{$user['full_name']}}</a></p>
       @endforeach
     </div>
   </aside>

@@ -14,16 +14,16 @@
     <div class="field-input">
       <input type="text" name="username" id="username">
       <label for="username">User name</label>
-      @if ($error == "username")
+      {{-- @if ($error == "username") --}}
         <p class="error">You must type your user name</p>
-      @endif
+      {{-- @endif --}}
     </div>
     <div class="field-input">
       <input type="password" name="password" id="password">
       <label for="password">Password</label>
-      @if ($error == "password")
+      {{-- @if ($error == "password") --}}
         <p class="error">You must type your password</p>
-      @endif
+      {{-- @endif --}}
     </div>
     <button type="submit">Login</button>
     <p class="redirect">Don't have an accout?<a href="/signup">Signup</a></p>
