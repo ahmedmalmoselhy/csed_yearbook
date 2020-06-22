@@ -8,24 +8,18 @@ use App\User;
 
 class SignupController extends Controller
 {
-    public function signup(Request $request){
-        $full_name = $request['full_name'];
-        $username = $request['username'];
-        $password = $request['password'];
-        if($full_name != null && $username != null && $password != null){
+    public function signup(){
+        $full_name = request('full_name');
+        $username = request('username');
+        $password = request('password');
+        $c_password = request('confirmPassword');
+        if($full_name != null && $username != null && $password != null && $c_password != null){
             $user = new User;
             $user -> username = $username;
             $user -> full_name = $full_name;
             $user -> password = $password;
-            if($user -> save()){
-                return redirect('login');
-            }
-            else{
-                return alert('can not sign up');
-            }
-        }
-        else{
-            return alert('fill needed data');
+            $user -> save();
+            return view('login');
         }
     }
 }
