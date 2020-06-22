@@ -1,0 +1,97 @@
+.Home {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 0 40px;
+  @media screen and (max-width: 980px) {
+    padding: 0 5% 40px;
+  }
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    margin-bottom: 24px;
+    @media screen and (min-width: 900px) {
+      grid-column: 1/3;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    main {
+      order: 2;
+    }
+  }
+
+
+  aside {
+    border-radius: 20px;
+    background-color: $light-color;
+    box-shadow: $shadow;
+    padding: 24px;
+    height: 515px;
+    box-sizing: border-box;
+    overflow: auto;
+    @media screen and (max-width: 900px) {
+      order: 1;
+      margin-bottom: 24px;
+    }
+    h2 {
+      color: $secondary-color;
+      font-size: $heading-size;
+      font-weight: $semi-weight;
+      text-align: center;
+    }
+    .members-list {
+      margin-top: 16px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      grid-auto-rows: 40px;
+      grid-gap: 8px 16px;
+      .line {
+        position: absolute;
+        height: calc(100% + 12px);
+        width: 2px;
+        background: $main-color;
+        margin-left: 20px;
+        &::after {
+          position: absolute;
+          content: "";
+          width: 8px;
+          height: 8px;
+          background-color: $main-color;
+          border-radius: 50%;
+          bottom: -8px;
+          left: -3px;
+        }
+      }
+      .char {
+        position: sticky;
+        top: 0;
+        background-color: $secondary-color;
+        border-radius: 50%;
+        font-weight: $semi-weight;
+        font-size: $heading-size;
+        width: 40px;
+        height: 40px;
+        color: $main-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      p {
+        align-self: center;
+        overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+        .name {
+          grid-column: 2/3;
+          color: $grey-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+form {
+  background-color: $main-color;
+  border-radius: 10px;
+  padding: 24px;
+  .field-input {
+    display: flex;
+  }
+  > p {
+    color: $light-color;
+    font-size: $small-size;
+    margin-top: 4px;
+  }
+  footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    div {
+      display: flex;
+      align-items: center;
+      p {
+        color: $light-color;
+      }
+      label {
+        position: relative;
+        display: block;
+        width: 40px;
+        height: 20px;
+        background-color: $light-color;
+        border-radius: 20px;
+        margin-left: 16px;
+        cursor: pointer;
+        span {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: $secondary-color;
+          transition: $transition;
+        }
+      }
+      input:checked + label span {
+        margin-left: 20px;
+        background-color: $grey-color;
+      }
+    }
+  }
+}

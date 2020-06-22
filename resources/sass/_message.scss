@@ -1,0 +1,192 @@
+.message {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-gap: 16px;
+  min-height: 240px;
+  margin-top: 24px;
+  background-color: $main-color;
+  border-radius: 10px;
+  color: $light-color;
+  @media screen and (max-width: 740px) {
+    grid-template-rows: 240px 1fr;
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 24px auto 0;
+    grid-gap: 0;
+  }
+  &.sent {
+    display: block;
+    min-height: auto;
+    position: relative;
+    .reciever {
+      position: absolute;
+      width: 173px;
+      height: 40px;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 5px 16px;
+      background-color: $secondary-color;
+      color: $main-color;
+      display: flex;
+      justify-content: center;
+      margin-top: -16px;
+      border-radius: 20px 20px 0 0;
+      margin-left: 24px;
+      font-weight: $semi-weight;
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+    }
+    .content {
+      padding: 24px;
+    }
+    footer {
+      margin-top: 8px;
+    }
+  }
+  .sender {
+    background: url("../images/85327.jpg") center / 240px 240px no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $main-color;
+    font-weight: $semi-weight;
+    @media screen and (max-width: 740px) {
+      border-radius: 50%;
+      width: 240px;
+      margin: 0 auto;
+    }
+    &.anonymus {
+      color: $grey-color;
+    }
+    p {
+      padding: 0 50px;
+      direction: rtl;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      a {
+        color: $main-color;
+      }
+    }
+  }
+  .content {
+    padding: 24px 24px 24px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media screen and (max-width: 740px) {
+      padding: 24px;
+    }
+    .rtl {
+      text-align: right;
+      direction: rtl;
+    }
+    .clamp {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      @media screen and (max-width: 740px) {
+        -webkit-line-clamp: 7;
+      }
+    }
+    button {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: $light-color;
+      font-size: $button-size;
+      font-weight: $semi-weight;
+      font-family: "Cairo", sans-serif;
+      text-align: right;
+      cursor: pointer;
+      outline: none;
+      &.hidden {
+        visibility: hidden;
+      }
+    }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media screen and (max-width: 740px) {
+        flex-direction: column;
+      }
+      p {
+        font-size: 12px;
+      }
+      form {
+        padding: 0;
+        button {
+          height: 40px;
+          display: block;
+          padding: 5px 16px;
+          border-radius: 20px;
+          background-color: $light-color;
+          color: $grey-color;
+          font-size: 16px;
+          font-weight: $semi-weight;
+          transition: $transition;
+          @media screen and (max-width: 740px) {
+            margin-top: 16px;
+          }
+          &.warning {
+            color: $warning-color;
+          }
+          &:hover {
+            background-color: $secondary-color;
+            &.warning {
+              background-color: $warning-color;
+              color: $light-color;
+            }
+          }
+        }
+      }
+      div {
+        display: flex;
+        align-items: center;
+        p {
+          font-size: 16px;
+          color: $secondary-color;
+        }
+        label {
+          position: relative;
+          display: block;
+          width: 40px;
+          height: 20px;
+          background-color: $light-color;
+          border-radius: 20px;
+          margin-left: 16px;
+          cursor: pointer;
+          span {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: $secondary-color;
+            transition: $transition;
+          }
+        }
+        input:checked + label span {
+          margin-left: 20px;
+          background-color: $grey-color;
+        }
+      }
+    }
+  }
+}
+
+.no-messages {
+	text-align: center;
+	margin-top: 24px;
+	font-size: 24px;
+	color: $warning-color;
+}

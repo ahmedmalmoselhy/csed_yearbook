@@ -1,0 +1,44 @@
+.Landing-page {
+  padding-bottom: 0;
+  background: url("../images/85327.jpg") 0 -270px / cover no-repeat $light-color;
+  background-blend-mode: overlay;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 100vh;
+  @media screen and (max-width: 970px) {
+    background-position: unset;
+  }
+  @media screen and (max-width: 695px) {
+    background-size: auto 100vh;
+    background-position-x: center;
+  }
+
+  img {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    max-width: 768px;
+    width: 100%;
+    z-index: -1;
+  }
+
+  nav {
+    align-self: flex-start;
+    margin-top: 40px;
+    ul li {
+      &:first-of-type {
+        margin-right: 24px;
+      }
+      a {
+        font-weight: $semi-weight;
+        color: $grey-color;
+        transition: $transition;
+        &:hover {
+          color: $main-color;
+        }
+      }
+    }
+  }
+}

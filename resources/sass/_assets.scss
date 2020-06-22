@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Cairo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: $grey-color;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  background-color: $light-color;
+  padding: 0 9% 24px;
+}
+
+nav {
+  margin-top: 19px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  ul {
+    li {
+      &:not(:last-of-type) {
+        margin-right: 16px;
+      }
+      a {
+        color: $grey-color;
+        font-weight: $semi-weight;
+        transition: $transition;
+        &.active,
+        &:hover {
+          color: $main-color;
+        }
+        &.logout {
+          color: $warning-color;
+        }
+      }
+    }
+  }
+}
+
+.field-input {
+  position: relative;
+  label {
+    position: absolute;
+    top: 7px;
+    left: 16px;
+    color: rgba($color: $grey-color, $alpha: 0.7);
+    font-size: 14px;
+    transition: $transition;
+  }
+  input {
+    height: 40px;
+    width: 100%;
+    border-radius: 20px;
+    border: 0;
+    padding: 0 16px;
+    color: $grey-color;
+    box-sizing: border-box;
+    font-family: "Cairo", sans-serif;
+    &:focus + label,
+    &:not(:focus).label-hidden + label {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  textarea {
+    border-radius: 20px;
+    height: 128px;
+    width: 100%;
+    padding: 7px 16px 0;
+    border: 0;
+    color: $grey-color;
+    box-sizing: border-box;
+    font-family: "Cairo", sans-serif;
+    resize: vertical;
+    &:focus + label,
+    &:not(:focus).label-hidden + label {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  .error {
+    font-size: $small-size;
+    color: $warning-color;
+    margin-left: 16px;
+  }
+}
+
+form button {
+  height: 32px;
+  background-color: $secondary-color;
+  color: $main-color;
+  font-size: $button-size;
+  font-weight: $semi-weight;
+  border-radius: 10px;
+  border: 0;
+  box-shadow: none;
+  padding: 0 16px;
+  cursor: pointer;
+}

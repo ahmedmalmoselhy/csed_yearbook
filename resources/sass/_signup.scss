@@ -1,0 +1,85 @@
+.Signup {
+  background: url("../images/85327.jpg") 0 -270px / cover no-repeat $light-color;
+  background-blend-mode: overlay;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @media screen and (max-width: 970px) {
+    background-position: unset;
+  }
+  @media screen and (max-width: 695px) {
+    background-size: auto 100vh;
+    background-position-x: center;
+  }
+
+  header {
+    width: 240px;
+    height: 240px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: $white-color;
+    margin-top: 40px;
+    z-index: 2;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  form {
+    width: 90%;
+    max-width: 852px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $light-color;
+    box-shadow: $shadow;
+    border-radius: 20px;
+    margin-top: -80px;
+    padding: 120px 0 40px;
+    .form-row {
+      display: flex;
+      max-width: 90%;
+      .field-input {
+        width: 318px;
+        &:first-of-type {
+          margin-right: 32px;
+        }
+      }
+      @media screen and (max-width: 826px) {
+        flex-direction: column;
+        max-width: 318px;
+        width: 90%;
+        .field-input {
+          margin: 0 auto 10px;
+          max-width: 318px;
+          width: 100%;
+          &:first-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .field-input {
+      display: block;
+      max-width: 318px;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 8px;
+    }
+    > p {
+      color: $grey-color;
+      font-size: 12px;
+      margin-top: 8px;
+      a {
+        color: $main-color;
+        margin-left: 4px;
+      }
+    }
+  }
+}
