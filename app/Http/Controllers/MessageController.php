@@ -43,7 +43,7 @@ class MessageController extends Controller
     public function showMyMessages(){
         if(request()->session()->has('id')){
             $response = [];
-            $messages = Message::where('to_id', Session::get('id'))->get();
+            $messages = Message::where(['to_id' => Session::get('id'), 'is_visible' => 0])->get();
             if($messages -> isNotEmpty()){
                 foreach($messages as $message){
                     $sender_name = null;
@@ -65,6 +65,26 @@ class MessageController extends Controller
                 }
             }
             return view('received')->with('messages', $response);
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function publishMessage(){
+        if(request()->session()->has('id')){
+            $message_id = request('message_id');
+            $id = Session::get('id');
+            if($message_id != null){
+                Message::where(['id' => $message_id, 'to_id' => $id ])->update(['is_visible' => 1]);
+                return redirect('received');
+            }
+            else{
+                return redirect('received');
+            }
+        }
+        else{
+            return redirect('login');
         }
     }
 }
