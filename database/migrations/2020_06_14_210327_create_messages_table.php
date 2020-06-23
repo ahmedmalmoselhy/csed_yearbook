@@ -17,7 +17,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger("from_id")->nullable(true);
             $table->unsignedBigInteger("to_id")->nullable(true);
-            $table->string("message");
+            $table->text("message");
             $table->boolean("is_known");
             $table->boolean("is_visible");
             $table->boolean("is_public");
