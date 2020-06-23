@@ -12,7 +12,7 @@
   <nav>
     <img src="images/Logo.svg" alt="Website logo">
     <ul>
-      <li><a class="active" href="/Home">Home</a></li>
+      <li><a class="active" href="/home">Home</a></li>
       <li><a href="/received">Recieved</a></li>
       <li><a href="/sent">Sent</a></li>
       <li><a href="/profile">Profile</a></li>
@@ -21,14 +21,17 @@
   </nav>
   <main>
     <form method="POST" action="/home">
+        @csrf
+        {{-- {{ print_r(Session::get('id')) }} --}}
       <div class="field-input">
         <textarea name="addPost" id="addpost"></textarea>
         <label for="addpost">Your message</label>
+        <input type="text" name="from" id="from" hidden value={{ Session::get('id') }}>
       </div>
       <p>*This message will be seen by everyone</p>
       <footer>
         <div>
-          <p>Anonymus</p>
+          <p>Anonymous</p>
           <input type="checkbox" name="anonymus" id="anonymus" hidden>
           <label for="anonymus"><span></span></label>
         </div>

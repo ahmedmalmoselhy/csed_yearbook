@@ -11,6 +11,7 @@
     <img src="images/Logo.svg" alt="Website Logo">
   </header>
   <form method="POST" action="/login">
+    @csrf
     <div class="field-input">
       <input type="text" name="username" id="username">
       <label for="username">User name</label>
