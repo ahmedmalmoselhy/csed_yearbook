@@ -90,5 +90,17 @@
     </div>
   </aside>
   <script src="js/app.js"></script>
+  <script>
+        var msg = '{{Session::get('success')}}';
+        var exist = '{{Session::has('success')}}';
+        if(exist){
+        alert(msg);
+        }
+        var msg2 = '{{Session::get('profile')}}';
+        var exist2 = '{{Session::has('profile')}}';
+        if(exist2){
+        alert(msg2);
+        }
+    </script>
 </body>
 </html>

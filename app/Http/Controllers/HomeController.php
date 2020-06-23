@@ -55,7 +55,7 @@ class HomeController extends Controller
                 ]);
         }
         else{
-            return redirect('login');
+            return redirect('login')->with('login', 'You Must Login First');
         }
 
     }

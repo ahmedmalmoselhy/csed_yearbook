@@ -30,5 +30,12 @@
     <p class="redirect">Don't have an accout?<a href="/signup">Signup</a></p>
   </form>
   <script src="js/app.js"></script>
+    <script>
+        var msg = '{{Session::get('login')}}';
+        var exist = '{{Session::has('login')}}';
+        if(exist){
+        alert(msg);
+        }
+    </script>
 </body>
 </html>

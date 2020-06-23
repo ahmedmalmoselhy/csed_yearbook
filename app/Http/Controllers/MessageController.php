@@ -32,10 +32,10 @@ class MessageController extends Controller
             $new_message -> is_public = $is_public;
             $new_message -> save();
 
-            return redirect('home');
+            return redirect('home')->with('success', 'Published!');
         }
         else{
-            return redirect('login');
+            return redirect('login')->with('login', 'You Must Login First');
         }
 
     }
@@ -67,7 +67,7 @@ class MessageController extends Controller
             return view('received')->with('messages', $response);
         }
         else{
-            return redirect('login');
+            return redirect('login')->with('login', 'You Must Login First');
         }
     }
 
@@ -77,10 +77,10 @@ class MessageController extends Controller
             $id = Session::get('id');
             if($message_id != null){
                 Message::where(['id' => $message_id, 'to_id' => $id ])->update(['is_visible' => 1]);
-                return redirect('received');
+                return redirect('received')->with('success', 'Published!');
             }
             else{
-                return redirect('received');
+                return redirect('received')->with('fail', 'Try Again');
             }
         }
         else{
@@ -125,14 +125,14 @@ class MessageController extends Controller
             $id = Session::get('id');
             if($message_id != null){
                 Message::where(['id' => $message_id, 'from_id' => $id ])->delete();
-                return redirect('sent');
+                return redirect('sent')->with('success', 'Message Deleted');
             }
             else{
-                return redirect('sent');
+                return redirect('sent')->with('fail', 'Try Again');
             }
         }
         else{
-            return redirect('login');
+            return redirect('login')->with('login', 'You Must Login First');
         }
     }
 
@@ -161,12 +161,15 @@ class MessageController extends Controller
             $new_message -> is_known = $is_known;
             $new_message -> is_visible = $is_visible;
             $new_message -> is_public = $is_public;
-            $new_message -> save();
-
-            return redirect('profile?id=' . $to_id)->with('sent', 'Message Sent');
+            if($new_message -> save()){
+                return redirect('profile?id=' . $to_id)->with('sent', 'Message Sent');
+            }
+            else{
+                return redirect('profile?id=' . $to_id)->with('fail', 'Try Again');
+            }
         }
         else{
-            return redirect('login');
+            return redirect('login')->with('login', 'You Must Login First');
         }
     }
 
@@ -176,14 +179,14 @@ class MessageController extends Controller
             $id = Session::get('id');
             if($message_id != null){
                 Message::where(['id' => $message_id, 'to_id' => $id ])->update(['is_visible' => 0]);
-                return redirect('profile?id=' . Session::get('id'));
+                return redirect('profile?id=' . Session::get('id'))->with('success', 'Message Hidden');
             }
             else{
-                return redirect('profile?id=' . Session::get('id'));
+                return redirect('profile?id=' . Session::get('id'))->with('fail', 'Try Again');
             }
         }
         else{
-            return redirect('login');
+            return redirect('login')->with('login', 'You Must Login First');
         }
     }
 }

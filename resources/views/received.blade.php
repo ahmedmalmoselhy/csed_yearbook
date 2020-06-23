@@ -51,6 +51,18 @@
     @endforelse
   </main>
   <script src="js/app.js"></script>
+  <script>
+        var msg2 = '{{Session::get('success')}}';
+        var exist2 = '{{Session::has('success')}}';
+        if(exist2){
+            alert(msg2);
+        }
+        var msg3 = '{{Session::get('fail')}}';
+        var exist3 = '{{Session::has('fail')}}';
+        if(exist3){
+            alert(msg3);
+        }
+    </script>
 </body>
 
 </html>
