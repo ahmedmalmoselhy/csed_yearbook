@@ -65,7 +65,7 @@
         @endif
         <div class="content">
           <!-- Check english or arabic -->
-          <p class="clamp">{{$message["message"]}}</p>
+          <p class="clamp rtl">{{$message["message"]}}</p>
           <button class="hidden">See more</button>
           <footer>
             <p>{{$message["timestamp"]}}</p>
