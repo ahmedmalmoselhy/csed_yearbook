@@ -54,7 +54,7 @@ class HomeController extends Controller
                 ]);
         }
         else{
-            return redirect('signup');
+            return redirect('login');
         }
 
     }

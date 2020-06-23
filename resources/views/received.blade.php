@@ -24,7 +24,7 @@
       <section class="message">
         @if ($message["is_known"])
           <div class="sender">
-            <p><a href="/profile?id={{$message["id"]}}">{{$message["from"]}}</a></p>
+            <p><a href="/profile?id={{$message["from_id"]}}">{{$message["sender"]}}</a></p>
           </div>
         @else
           <div class="sender anonymus">
@@ -36,10 +36,10 @@
           <p class="rtl clamp">{{$message["message"]}}</p>
           <button class="hidden">See more</button>
           <footer>
-            <p>{{$message["time"]}}</p>
+            <p>{{$message["timestamp"]}}</p>
             <!-- <p>15/3/2020 at 11:30:20 PM</p> -->
             <form action="/received" method="POST">
-              <input type="text" name="message_id" value={{$message["message_id"]}} hidden>
+              <input type="text" name="message_id" value={{$message["id"]}} hidden>
               <button type="submit">Show on profile</button>
             </form>
           </footer>
