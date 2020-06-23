@@ -57,4 +57,4 @@ Route::get('/received', 'MessageController@showMyMessages');
 Route::post('/received', 'MessageController@publishMessage');
 
 // delete sent message
-Route::get('/sent', 'MessageController@deleteMessage');
+Route::post('/sent', 'MessageController@deleteMessage');

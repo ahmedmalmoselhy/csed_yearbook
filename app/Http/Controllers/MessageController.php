@@ -43,7 +43,7 @@ class MessageController extends Controller
     public function showMyMessages(){
         if(request()->session()->has('id')){
             $response = [];
-            $messages = Message::where(['to_id' => Session::get('id'), 'is_visible' => 0])->get();
+            $messages = Message::where(['to_id' => Session::get('id'), 'is_visible' => 0, 'is_public' => 0])->get();
             if($messages -> isNotEmpty()){
                 foreach($messages as $message){
                     $sender_name = null;
@@ -82,6 +82,37 @@ class MessageController extends Controller
             else{
                 return redirect('received');
             }
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function showSentMessages(){
+        if(request()->session()->has('id')){
+            $response = [];
+            $messages = Message::where(['from_id' => Session::get('id')])->get();
+            if($messages -> isNotEmpty()){
+                foreach($messages as $message){
+                    $for_name = null;
+                    if($message -> is_known == 1){
+                        $for = User::where('id', $message -> to_id)->first();
+                        if($for != null){
+                            $for_name = $for -> full_name;
+                        }
+                    }
+                    $mes = [
+                        'id' => $message -> id,
+                        'to_id' => $message -> to_id,
+                        'message' => $message -> message,
+                        'for' => $for_name,
+                        'is_public' => $message -> is_public,
+                        'timestamp' => $message -> created_at
+                    ];
+                    $response[] = $mes;
+                }
+            }
+            return view('sent')->with('messages', $response);
         }
         else{
             return redirect('login');

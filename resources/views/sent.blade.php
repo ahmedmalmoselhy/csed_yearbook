@@ -23,17 +23,22 @@
   @forelse ($messages as $message)
       <section class="message sent">
         <div class="reciever">
-          <p>To: {{$message["to"]}}</p>
+            @if ($message['is_public'] == '1')
+                <p>Public</p>
+            @else
+                <p>To: <a href="/profile?id={{$message["to_id"]}}">{{$message["for"]}}</a></p>
+            @endif
         </div>
         <div class="content">
           <!-- Check english or arabic -->
           <p class="rtl clamp">{{$message["message"]}}</p>
           <button class="hidden">See more</button>
           <footer>
-            <p>{{$message["time"]}}</p>
+            <p>{{$message["timestamp"]}}</p>
             <!-- <p>15/3/2020 at 11:30:20 PM</p> -->
             <form action="/sent" method="POST">
-              <input type="text" name="message_id" value={{$message["message_id"]}} hidden>
+                @csrf
+              <input type="text" name="message_id" value={{$message["id"]}} hidden>
               <button type="submit" class="warning">Delete message</button>
             </form>
           </footer>
