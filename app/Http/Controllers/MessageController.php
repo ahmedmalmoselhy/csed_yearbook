@@ -43,7 +43,7 @@ class MessageController extends Controller
     public function showMyMessages(){
         if(request()->session()->has('id')){
             $response = [];
-            $messages = Message::where(['to_id' => Session::get('id'), 'is_visible' => 0, 'is_public' => 0])->get();
+            $messages = Message::where(['to_id' => Session::get('id'), 'is_visible' => 0, 'is_public' => 0])->get()->sortByDesc('created_at');
             if($messages -> isNotEmpty()){
                 foreach($messages as $message){
                     $sender_name = null;
@@ -91,7 +91,7 @@ class MessageController extends Controller
     public function showSentMessages(){
         if(request()->session()->has('id')){
             $response = [];
-            $messages = Message::where(['from_id' => Session::get('id')])->get();
+            $messages = Message::where(['from_id' => Session::get('id')])->get()->sortByDesc('created_at');
             if($messages -> isNotEmpty()){
                 foreach($messages as $message){
                     $for_name = null;
@@ -129,6 +129,57 @@ class MessageController extends Controller
             }
             else{
                 return redirect('sent');
+            }
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function sendPrivateMessage(){
+        if(request()->session()->has('id')){
+            $sender_id = request('from');
+            $to_id = request('to');
+            if($to_id == null){
+                return redirect('profile?id=' . $to_id);
+            }
+            $message = request('message');
+            $is_known_val = request('is_known');
+            if($is_known_val == 'on'){
+                $is_known = 1;
+            }
+            else{
+                $is_known = 0;
+            }
+            $is_public = 0;
+            $is_visible = 0;
+
+            $new_message = new Message;
+            $new_message -> from_id = $sender_id;
+            $new_message -> to_id = $to_id;
+            $new_message -> message = $message;
+            $new_message -> is_known = $is_known;
+            $new_message -> is_visible = $is_visible;
+            $new_message -> is_public = $is_public;
+            $new_message -> save();
+
+            return redirect('profile?id=' . $to_id)->with('sent', 'Message Sent');
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
+    public function hideMessage(){
+        if(request()->session()->has('id')){
+            $message_id = request('message_id');
+            $id = Session::get('id');
+            if($message_id != null){
+                Message::where(['id' => $message_id, 'to_id' => $id ])->update(['is_visible' => 0]);
+                return redirect('profile?id=' . Session::get('id'));
+            }
+            else{
+                return redirect('profile?id=' . Session::get('id'));
             }
         }
         else{

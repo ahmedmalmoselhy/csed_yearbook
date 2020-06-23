@@ -15,7 +15,7 @@ class HomeController extends Controller
         if(request()->session()->has('id')){
             // get all messages
             $messages_response = [];
-            $messages = Message::where('is_public', 1)->get()->sortBy('created_at');
+            $messages = Message::where('is_public', 1)->get()->sortByDesc('created_at');
             if($messages -> isNotEmpty()){
                 foreach($messages as $message){
                     // get the message data

@@ -20,7 +20,7 @@ class ProfileController extends Controller
                 ];
                 $response = [];
                 // get all public user messages
-                $messages = Message::where(['to_id' => $profile -> id, 'is_visible' => 1])->get();
+                $messages = Message::where(['to_id' => $profile -> id, 'is_visible' => 1])->get()->sortByDesc('created_at');
                 if($messages -> isNotEmpty()){
                     foreach($messages as $message){
                         // get the sender

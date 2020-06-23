@@ -49,7 +49,6 @@ Route::post('/profile', 'MessageController@sendPrivateMessage');
 // see sent messages
 Route::get('/sent', 'MessageController@showSentMessages');
 
-
 // see received messages
 Route::get('/received', 'MessageController@showMyMessages');
 
@@ -58,3 +57,6 @@ Route::post('/received', 'MessageController@publishMessage');
 
 // delete sent message
 Route::post('/sent', 'MessageController@deleteMessage');
+
+// hide from profile
+Route::post('/hide', 'MessageController@hideMessage');

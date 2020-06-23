@@ -33,21 +33,21 @@
 
     @if ($user['id'] != Session::get('id'))
     <form method="POST" action="/profile">
-      <div class="field-input">
-        <textarea name="message" id="addpost"></textarea>
-        <label for="addpost">Your message</label>
-      </div>
-      <p>*This message will be seen by everyone</p>
-      <input type="text" name="from" id="from" hidden value={{Session::get('id')}}>
-      <input type="text" name="to" id="to" hidden value={{$user['id']}}>
-      <footer>
-        <div>
-          <p>Anonymus</p>
-          <input type="checkbox" name="is_known" id="anonymus" hidden>
-          <label for="anonymus"><span></span></label>
+        @csrf
+        <div class="field-input">
+            <textarea name="message" id="addpost"></textarea>
+            <label for="addpost">Your message</label>
         </div>
-        <button type="submit">Post</button>
-      </footer>
+        <input type="text" name="from" id="from" hidden value = {{ Session::get('id') }} >
+        <input type="text" name="to" id="to" hidden value= {{ $user['id'] }} >
+        <footer>
+            <div>
+                <p>Anonymus</p>
+                <input type="checkbox" name="is_known" id="anonymus" hidden>
+                <label for="anonymus"><span></span></label>
+            </div>
+            <button type="submit">Post</button>
+        </footer>
     </form>
     @endif
 
@@ -70,7 +70,7 @@
             <p>{{$message["timestamp"]}}</p>
             <!-- <p>15/3/2020 at 11:30:20 PM</p> -->
             @if ($user['id'] == Session::get('id'))
-            <form action="/profile" method="POST">
+            <form action="/hide" method="POST">
                 @csrf
               <input type="text" name="message_id" value={{$message["id"]}} hidden>
               <button type="submit">Hide from profile</button>
