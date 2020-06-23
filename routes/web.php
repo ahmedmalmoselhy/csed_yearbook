@@ -41,21 +41,21 @@ Route::post('/login', 'LoginController@login');
 // home page
 Route::get('/home', 'HomeController@showHome');
 // Route::get('/home', function() {
-//     return view("home", ['messages' => 
+//     return view("home", ['messages' =>
 //     [
-//         ["from" => "Nahla", 
+//         ["from" => "Nahla",
 //         "id" => "123",
-//         "is_known" => 0, 
-//         "message" => "Hello", 
+//         "is_known" => 0,
+//         "message" => "Hello",
 //         "message_id" => "123",
 //         "time" => "15/3/2020 at 11:30:20 PM"],
-//         ["from" => "Nahla", 
+//         ["from" => "Nahla",
 //         "id" => "123",
-//         "is_known" => 1, 
-//         "message" => "أزيكم", 
+//         "is_known" => 1,
+//         "message" => "أزيكم",
 //         "message_id" => "123",
 //         "time" => "15/3/2020 at 11:30:20 PM"]
-//     ], 
+//     ],
 //     "users" => [
 //         "Ahmed", "Aya", "Mona", "Nahla", "Nada"
 //     ]
@@ -63,7 +63,7 @@ Route::get('/home', 'HomeController@showHome');
 // });
 
 // publish a public message
-Route::post('/home', 'MessageController@sendPublicMessage');
+Route::post('/home', 'MessageController@postPublicMessage');
 
 // show profile
 Route::get('/profile', 'ProfileController@showProfile');
@@ -75,19 +75,19 @@ Route::get('/profile', 'ProfileController@showProfile');
 //         "recieved_no" => 5,
 //         "sent_no" => 5,
 //         "messages" => [
-//             ["from" => "Nahla", 
+//             ["from" => "Nahla",
 //             "id" => "123",
-//             "is_known" => 0, 
-//             "message" => "Hello", 
+//             "is_known" => 0,
+//             "message" => "Hello",
 //             "message_id" => "123",
 //             "time" => "15/3/2020 at 11:30:20 PM"],
-//             ["from" => "Nahla", 
+//             ["from" => "Nahla",
 //             "id" => "123",
-//             "is_known" => 1, 
-//             "message" => "أزيكم", 
+//             "is_known" => 1,
+//             "message" => "أزيكم",
 //             "message_id" => "123",
 //             "time" => "15/3/2020 at 11:30:20 PM"]
-//         ], 
+//         ],
 //     ]);
 // });
 
@@ -99,17 +99,17 @@ Route::get('/sent', 'MessageController@showSentMessages');
 // Route::get('/sent', function() {
 //     return view("sent", [
 //         "messages" => [
-//             ["to" => "Nahla Gala Mohammed", 
+//             ["to" => "Nahla Gala Mohammed",
 //             "id" => "123",
-//             "message" => "Hello", 
+//             "message" => "Hello",
 //             "message_id" => "123",
 //             "time" => "15/3/2020 at 11:30:20 PM"],
-//             ["to" => "Nahla", 
+//             ["to" => "Nahla",
 //             "id" => "123",
-//             "message" => "أزيكم", 
+//             "message" => "أزيكم",
 //             "message_id" => "123",
 //             "time" => "15/3/2020 at 11:30:20 PM"]
-//         ], 
+//         ],
 //     ]);
 // });
 
@@ -118,19 +118,19 @@ Route::get('/received', 'MessageController@showMyMessages');
 // Route::get('/received', function() {
 //     return view("received", [
 //         "messages" => [
-//             ["from" => "Nahla", 
+//             ["from" => "Nahla",
 //             "id" => "123",
-//             "is_known" => 0, 
-//             "message" => "Hello", 
+//             "is_known" => 0,
+//             "message" => "Hello",
 //             "message_id" => "123",
 //             "time" => "15/3/2020 at 11:30:20 PM"],
-//             ["from" => "Nahla", 
+//             ["from" => "Nahla",
 //             "id" => "123",
-//             "is_known" => 1, 
-//             "message" => "أزيكم", 
+//             "is_known" => 1,
+//             "message" => "أزيكم",
 //             "message_id" => "123",
 //             "time" => "15/3/2020 at 11:30:20 PM"]
-//         ], 
+//         ],
 //     ]);
 // });
 

@@ -23,26 +23,28 @@
     <form method="POST" action="/home">
         @csrf
         {{-- {{ print_r(Session::get('id')) }} --}}
-      <div class="field-input">
-        <textarea name="addPost" id="addpost"></textarea>
-        <label for="addpost">Your message</label>
-        <input type="text" name="from" id="from" hidden value={{ Session::get('id') }}>
-      </div>
-      <p>*This message will be seen by everyone</p>
-      <footer>
-        <div>
-          <p>Anonymous</p>
-          <input type="checkbox" name="anonymus" id="anonymus" hidden>
-          <label for="anonymus"><span></span></label>
+        <div class="field-input">
+            <input type="text" name="from" id="from" hidden value={{ Session::get('id') }}>
+            <textarea name="addPost" id="addpost"></textarea>
+            <label for="addpost">Your message</label>
+
         </div>
-        <button type="submit">Post</button>
-      </footer>
+        <p>*This message will be seen by everyone</p>
+        <footer>
+            <div>
+            <p>Anonymous</p>
+            <input type="checkbox" name="anonymus" id="anonymus" hidden>
+            <label for="anonymus"><span></span></label>
+            </div>
+            <button type="submit">Post</button>
+        </footer>
     </form>
+
     @forelse ($messages_response as $message)
       <section class="message">
         @if ($message["is_known"])
           <div class="sender">
-            <p>{{ $message["from"] }}</p>
+            <p><a href="/profile?id={{ $message['sender_id'] }}">{{ $message["from"] }}</a></p>
           </div>
         @else
           <div class="sender anonymus">

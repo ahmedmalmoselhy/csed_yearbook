@@ -12,21 +12,22 @@ class HomeController extends Controller
     public function showHome(){
         // get all messages
         $messages_response = [];
-        $messages = Message::where('is_public', 1)->get();
+        $messages = Message::where('is_public', 1)->get()->sortBy('created_at');
         if($messages -> isNotEmpty()){
             foreach($messages as $message){
                 // get the message data
                 $text = $message -> message;
                 $timestamp = $message -> created_at;
                 $sender_name = null;
+                $sender = User::where('id', $message -> from_id)->first();
                 if($message -> is_known == 1){
-                    $sender = User::where('id', $message -> from_id)->first();
                     if($sender != null){
                         $sender_name = $sender -> full_name;
                     }
                 }
                 $message_response = [
                     'from' => $sender_name,
+                    'sender_id' => $sender -> id,
                     'message' => $text,
                     'time' => $timestamp,
                     'is_known' => $message -> is_known

@@ -9,5 +9,27 @@ use App\Message;
 
 class MessageController extends Controller
 {
-    //
+    public function postPublicMessage(){
+        $sender_id = request('from');
+        $message = request('addPost');
+        $is_known_val = request('anonymus');
+        if($is_known_val == 'on'){
+            $is_known = 1;
+        }
+        else{
+            $is_known = 0;
+        }
+        $is_public = 1;
+        $is_visible = 1;
+
+        $new_message = new Message;
+        $new_message -> from_id = $sender_id;
+        $new_message -> message = $message;
+        $new_message -> is_known = $is_known;
+        $new_message -> is_visible = $is_visible;
+        $new_message -> is_public = $is_public;
+        $new_message -> save();
+
+        return redirect('home');
+    }
 }
