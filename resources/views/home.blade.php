@@ -16,7 +16,7 @@
       <li><a href="/received">Recieved</a></li>
       <li><a href="/sent">Sent</a></li>
       <li><a href="/profile">Profile</a></li>
-      <li><a class="logout" href="/">Logout</a></li>
+    <li><a class="logout" href="/logout?id= {{ Session::get('id') }}">Logout</a></li>
     </ul>
   </nav>
   <main>

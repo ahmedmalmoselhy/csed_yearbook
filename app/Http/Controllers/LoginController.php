@@ -28,4 +28,9 @@ class LoginController extends Controller
             }
         }
     }
+
+    public function logout(){
+        session()->forget('id');
+        return redirect('/');
+    }
 }

@@ -37,6 +37,7 @@ Route::get('/login', function(){
 // });
 
 Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
 
 // home page
 Route::get('/home', 'HomeController@showHome');
