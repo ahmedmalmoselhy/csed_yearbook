@@ -19281,6 +19281,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var messages = document.querySelectorAll(".content");
@@ -19304,6 +19310,62 @@ window.addEventListener("keyup", function (e) {
     var input = document.getElementById(e.target.id);
     if (!input.value) input.classList.remove("label-hidden");else input.classList.add("label-hidden");
   }
+}); // Search in members list
+
+var searchInput = document.querySelector("input#search");
+var members = Array.from(document.querySelectorAll(".members-list p"));
+var timeout;
+
+function debounce(func, wait) {
+  return function () {
+    var context = this,
+        args = arguments;
+
+    var later = function later() {
+      timeout = null;
+      func.apply(context, args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+searchInput.addEventListener("input", function () {
+  debounce(function () {
+    var searchRes = members.filter(function (member) {
+      return member.textContent.toLocaleLowerCase().includes(searchInput.value.toLocaleLowerCase());
+    });
+    var content = "";
+
+    if (searchRes.length) {
+      var _char = "";
+      content = "<div class='line'></div>";
+
+      var _iterator = _createForOfIteratorHelper(searchRes),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var textContent = _step.value.textContent;
+          var name = textContent;
+          if (_char === name[0]) content += "\n                <span></span>\n                <p><a href=\"/profile.html\" class=\"name\">".concat(name, "</a></p>\n                ");else {
+            content += "\n                <span class=\"char\">".concat(name[0], "</span>\n                <p><a href=\"/profile.html\" class=\"name\">").concat(name, "</a></p>\n                ");
+            _char = name[0];
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+
+    var searchList = document.createElement("div");
+    searchList.classList.add("members-list");
+    searchList.innerHTML = content;
+    document.querySelector("aside").replaceChild(searchList, document.querySelector(".members-list"));
+  }, 1000)();
 });
 
 /***/ }),
