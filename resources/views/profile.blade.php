@@ -16,7 +16,7 @@
         <li><a href="/home">Home</a></li>
         <li><a href="/received">Recieved</a></li>
         <li><a href="/sent">Sent</a></li>
-          <li><a class={{$user_id == $profile_id ? "active" : ""}} href="/profile">Profile</a></li>
+        <li><a class="active" href="/profile?id={{Session::get('id')}}">Profile</a></li>
         <li><a class="logout" href="/">Logout</a></li>
       </ul>
     </nav>
@@ -24,22 +24,22 @@
   </header>
   <main class="container">
     <div class="user-data">
-      <h2>{{$full_name}}</h2>
+      <h2>{{$user['full_name']}}</h2>
       <div>
-        <p>Recived <span>{{$recieved_no}}</span></p>
-        <p>Sent <span>{{$sent_no}}</span></p>
+        {{-- <p>Recived <span>{{$recieved_no}}</span></p>
+        <p>Sent <span>{{$sent_no}}</span></p> --}}
       </div>
     </div>
 
-    @if ($user_id != $profile_id)
+    @if ($user['id'] != Session::get('id'))
     <form method="POST" action="/profile">
       <div class="field-input">
         <textarea name="message" id="addpost"></textarea>
         <label for="addpost">Your message</label>
       </div>
       <p>*This message will be seen by everyone</p>
-      <input type="text" name="from" id="from" hidden value={{$user_id}}>
-      <input type="text" name="to" id="to" hidden value={{$profile_id}}>
+      <input type="text" name="from" id="from" hidden value={{Session::get('id')}}>
+      <input type="text" name="to" id="to" hidden value={{$user['id']}}>
       <footer>
         <div>
           <p>Anonymus</p>
@@ -55,10 +55,10 @@
       <section class="message">
         @if ($message["is_known"])
           <div class="sender">
-            <p><a href="/profile?id={{$message["id"]}}">{{$message["from"]}}</a></p>
+            <p><a href="/profile?id={{$message["from_id"]}}">{{$message["sender"]}}</a></p>
           </div>
         @else
-          <div class="sender anonymus">
+          <div class="sender anonymous">
             <p>Anonymus</p>
           </div>
         @endif
@@ -67,11 +67,12 @@
           <p class="rtl clamp">{{$message["message"]}}</p>
           <button class="hidden">See more</button>
           <footer>
-            <p>{{$message["time"]}}</p>
+            <p>{{$message["timestamp"]}}</p>
             <!-- <p>15/3/2020 at 11:30:20 PM</p> -->
-            @if ($user_id == $profile_id)
+            @if ($user['id'] == Session::get('id'))
             <form action="/profile" method="POST">
-              <input type="text" name="message_id" value={{$message["message_id"]}} hidden>
+                @csrf
+              <input type="text" name="message_id" value={{$message["id"]}} hidden>
               <button type="submit">Hide from profile</button>
             </form>
             @endif

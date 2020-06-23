@@ -15,7 +15,7 @@
       <li><a class="active" href="/home">Home</a></li>
       <li><a href="/received">Recieved</a></li>
       <li><a href="/sent">Sent</a></li>
-      <li><a href="/profile">Profile</a></li>
+      <li><a href="/profile?id={{Session::get('id')}}">Profile</a></li>
     <li><a class="logout" href="/logout?id= {{ Session::get('id') }}">Logout</a></li>
     </ul>
   </nav>
