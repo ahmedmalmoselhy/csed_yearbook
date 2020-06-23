@@ -95,11 +95,9 @@ class MessageController extends Controller
             if($messages -> isNotEmpty()){
                 foreach($messages as $message){
                     $for_name = null;
-                    if($message -> is_known == 1){
-                        $for = User::where('id', $message -> to_id)->first();
-                        if($for != null){
-                            $for_name = $for -> full_name;
-                        }
+                    $for = User::where('id', $message -> to_id)->first();
+                    if($for != null){
+                        $for_name = $for -> full_name;
                     }
                     $mes = [
                         'id' => $message -> id,
