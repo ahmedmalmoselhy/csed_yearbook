@@ -183,6 +183,10 @@ form button {
   -webkit-box-orient: vertical;
 }
 
+.message.sent .reciever p a {
+  color: #002B55;
+}
+
 .message.sent .content {
   padding: 24px;
 }
@@ -597,7 +601,7 @@ form footer div input:checked + label span {
 }
 
 .Profile header {
-  background: url(/images/CSED.jpg?8f5662ac8fe09378bbff7dcbd4113986) 0/cover no-repeat #D5D7D8;
+  background: url(/images/CSED.jpg?568a53b656d558debc5fd981392052fc) 0/cover no-repeat #D5D7D8;
   background-blend-mode: overlay;
   overflow: hidden;
   width: 100%;

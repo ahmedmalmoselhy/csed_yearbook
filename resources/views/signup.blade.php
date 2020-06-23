@@ -16,32 +16,20 @@
       <div class="field-input">
         <input type="text" name="full_name" id="fullname">
         <label for="fullname">Full name</label>
-        {{-- @if ($error == "full_name") --}}
-          <p class="error">You must type your full name</p>
-        {{-- @endif --}}
       </div>
       <div class="field-input">
         <input type="text" name="username" id="username">
         <label for="username">User name</label>
-        {{-- @if ($error == "username") --}}
-          <p class="error">You must type your user name</p>
-        {{-- @endif --}}
       </div>
     </div>
     <div class="form-row">
       <div class="field-input">
         <input type="password" name="password" id="password">
         <label for="password">Password</label>
-        {{-- @if ($error == "password") --}}
-          <p class="error">You must type your password</p>
-        {{-- @endif --}}
       </div>
       <div class="field-input">
         <input type="password" name="confirmPassword" id="confirmpassword">
         <label for="confirmpassword">Confirm password</label>
-        {{-- @if ($error == "confirm_password") --}}
-          <p class="error">You must re-type your password</p>
-        {{-- @endif --}}
       </div>
     </div>
     <button type="submit">Signup</button>

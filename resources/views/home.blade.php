@@ -53,7 +53,7 @@
         @endif
         <div class="content">
           <!-- Check english or arabic -->
-          <p class="rtl clamp">{{ $message["message"] }}</p>
+          <p class="clamp">{{ $message["message"] }}</p>
           <button class="hidden">See more</button>
           <footer>
             <p>{{ $message["time"] }}</p>
@@ -90,6 +90,7 @@
     </div>
   </aside>
   <script src="js/app.js"></script>
+  <script src="js/members.js"></script>
   <script>
         var msg = '{{Session::get('success')}}';
         var exist = '{{Session::has('success')}}';

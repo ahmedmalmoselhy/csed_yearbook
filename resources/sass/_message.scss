@@ -39,6 +39,9 @@
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
+        a {
+          color: $main-color;
+        }
       }
     }
     .content {
