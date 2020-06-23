@@ -118,4 +118,21 @@ class MessageController extends Controller
             return redirect('login');
         }
     }
+
+    public function deleteMessage(){
+        if(request()->session()->has('id')){
+            $message_id = request('message_id');
+            $id = Session::get('id');
+            if($message_id != null){
+                Message::where(['id' => $message_id, 'from_id' => $id ])->delete();
+                return redirect('sent');
+            }
+            else{
+                return redirect('sent');
+            }
+        }
+        else{
+            return redirect('login');
+        }
+    }
 }
