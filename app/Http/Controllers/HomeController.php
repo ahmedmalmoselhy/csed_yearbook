@@ -39,7 +39,7 @@ class HomeController extends Controller
                 }
             }
             // get all members
-            $members = User::all()->sortBy('full_name');
+            $members = User::all()->sortBy('full_name', SORT_NATURAL|SORT_FLAG_CASE);
             $members_response = [];
             foreach($members as $member){
                 $mem = [

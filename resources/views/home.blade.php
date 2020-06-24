@@ -77,12 +77,12 @@
         $char = ""
       @endphp
       @foreach ($users as $user)
-        @if ($user['full_name'][0] == $char)
+        @if (mb_substr(ucfirst($user['full_name']), 0, 1) == $char)
           <span></span>
         @else
-          <span class="char">{{$user['full_name'][0]}}</span>
+          <span class="char">{{mb_substr($user['full_name'], 0, 1)}}</span>
           @php
-            $char = $user['full_name'][0];
+            $char = mb_substr($user['full_name'], 0, 1);
           @endphp
         @endif
         <p><a href="/profile?id={{ $user['id'] }}" class="name">{{$user['full_name']}}</a></p>
